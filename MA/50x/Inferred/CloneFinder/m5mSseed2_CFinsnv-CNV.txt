@@ -1,0 +1,17 @@
+PSec1	PSec2	M4	M1	M3	M2
+normal	normal	normal	normal	normal	normal
+normal	normal	normal	normal	normal	normal
+normal	normal	normal	normal	normal	normal
+normal	normal	normal	normal	normal	normal
+normal	normal	normal	normal	normal	normal
+normal	normal	normal	normal	normal	normal
+normal	normal	normal	normal	normal	normal
+normal	normal	normal	normal	normal	normal
+normal	normal	normal	normal	normal	normal
+normal	normal	normal	normal	normal	normal
+normal	normal	normal	normal	normal	normal
+normal	normal	normal	normal	normal	normal
+normal	normal	normal	normal	normal	normal
+normal	normal	normal	normal	normal	normal
+normal	normal	normal	normal	normal	normal
+normal	normal	normal	normal	normal	normal

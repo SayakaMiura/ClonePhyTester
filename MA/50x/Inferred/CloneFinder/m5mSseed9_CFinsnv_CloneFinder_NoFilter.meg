@@ -1,0 +1,16 @@
+#MEGA
+!Title SNVs;
+!Format datatype=dna;
+ 
+#hg19
+AAAAAAAAA
+#Clone1
+TAATTTATA
+#Clone2
+TAATTTAAA
+#Clone3
+TATAAATAT
+#Clone4
+TAAAAAAAA
+#Clone5
+TTAAAAAAA

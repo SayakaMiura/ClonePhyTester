@@ -1,0 +1,7 @@
+input data file: C:\Users\tuf78332\Desktop\cancer-metastasis\MA50x\CFin\m5Sseed40_CFinsnv.txt
+total read count cutoff: 1
+mutant read count cutoff: 1
+clone frequency cutoff: 0.0001
+
+97.8260869565% of SNV sites are not affected by backward/parallel mutations.
+Run time: 0:00:03.333000

@@ -1,0 +1,8 @@
+True clone	Inf clone	GE	Annotation
+#Tru102	#TOR4TOR3	0	Initial
+#Tru9	#TOR5TOR1	0	Initial
+#Tru8	#TOR2	0	Initial
+#Tru3	#TOR6	17	Initial
+#Tru5	#TOR7	0	Initial
+#Tru103	#TOR4TOR3	17	Initial
+#Anc	#TOR4TOR3	7	Initial

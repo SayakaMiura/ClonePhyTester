@@ -1,0 +1,21 @@
+Sim	Data	Inferred Seq
+G7	2	Example\Sequence_List\G7-2_test.meg
+G7	10	Example\Sequence_List\G7-10_test.meg
+G7	22	Example\Sequence_List\G7-22_test.meg
+G7	26	Example\Sequence_List\G7-26_test.meg
+G7	30	Example\Sequence_List\G7-30_test.meg
+G12	2	Example\Sequence_List\G12-2_test.meg
+G12	13	Example\Sequence_List\G12-13_test.meg
+G12	22	Example\Sequence_List\G12-22_test.meg
+G12	25	Example\Sequence_List\G12-25_test.meg
+G12	30	Example\Sequence_List\G12-30_test.meg
+MA	m5Mseed473	Example\Sequence_List\MA-m5Mseed473_test.meg
+MA	m5Mseed694	Example\Sequence_List\MA-m5Mseed694_test.meg
+MA	m5Sseed17	Example\Sequence_List\MA-m5Rseed17_test.meg
+MA	m5Sseed49	Example\Sequence_List\MA-m5Sseed49_test.meg
+MA	m8Sseed35	Example\Sequence_List\MA-m8Sseed35_test.meg
+P10	Sim0Cov50	Example\Sequence_List\P10-Sim0Cov50_test.meg
+P10	Sim2Cov50	Example\Sequence_List\P10-Sim2Cov50_test.meg
+P10	Sim4Cov100	Example\Sequence_List\P10-Sim4Cov100_test.meg
+P10	Sim7Cov100	Example\Sequence_List\P10-Sim7Cov100_test.meg
+P10	Sim9Cov100	Example\Sequence_List\P10-Sim9Cov100_test.meg

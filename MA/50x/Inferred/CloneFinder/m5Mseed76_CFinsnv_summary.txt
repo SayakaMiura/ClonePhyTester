@@ -1,0 +1,8 @@
+input data file: C:\Users\tuf78332\Desktop\cancer-metastasis\MA50x\CFin\m5Mseed76_CFinsnv.txt
+total read count cutoff: 1
+mutant read count cutoff: 1
+clone frequency cutoff: 0.0001
+
+hybrid sample genotypes were suggested: ['M3', 'M2']
+80.7692307692% of SNV sites are not affected by backward/parallel mutations.
+Run time: 0:00:02.070000

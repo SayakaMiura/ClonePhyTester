@@ -1,0 +1,16 @@
+True clone	Inf clone	GE	Annotation
+#Tru9	#X5	9	Initial
+#Tru110	#X3	1	Initial
+#Tru202	#X2	2	Initial
+#Tru205	#X6	1	Initial
+#Tru112	#X6	2	Initial
+#Tru204	#X3	2	Initial
+#Tru10	#X2	6	Initial
+#Tru8	#X4	1	Initial
+#Tru5	#X9	5	Initial
+#Tru4	#X7	2	Initial
+#Tru101	#X2	0	Initial
+#Tru103	#X2	1	Initial
+#Tru103	#X8	5	ExtraInf
+#Tru101	#X10	6	ExtraInf
+#Tru10	#X11	6	ExtraInf

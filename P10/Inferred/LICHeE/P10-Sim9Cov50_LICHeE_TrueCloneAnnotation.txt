@@ -1,0 +1,8 @@
+True clone	Inf clone	GE	Annotation
+#Clo10	#clo2	19	Initial
+#Clo9	#clo1	3	Initial
+#Clo6	#clo5	5	Initial
+#Clo4	#clo5	2	Initial
+#Clo5	#clo4	2	Initial
+#Clo2	#clo2	2	Initial
+#Clo3	#clo1	2	Initial

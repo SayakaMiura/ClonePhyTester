@@ -1,0 +1,8 @@
+True clone	Inf clone	GE	Annotation
+#Tru102	#CloR3CloR4	0	Initial
+#Tru9	#CloR1CloR5	0	Initial
+#Tru8	#CloR2	0	Initial
+#Tru3	#CloR6	15	Initial
+#Tru5	#CloR7	0	Initial
+#Tru103	#CloR7	11	Initial
+#Anc	#CloR7	4	Initial
