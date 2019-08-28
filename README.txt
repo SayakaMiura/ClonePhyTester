@@ -1,24 +1,23 @@
-ClonePhyTester_v0.1.1
-Updated August 16, 2019
+ClonePhyTester_v0.1.1  
+(Copyright 2019, Authors and Temple University; see license below)
+
+Updated August 28, 2019
 ==================
-ClonePhyTester was developed by Sudhir Kumar [1].
 
-ClonePhyTester computes error rates (MLTED [2], RF [3], TreeVec [4], and mutation order error rates; see ref. [1] for the detail of these scores) for given clone phylogenies, inferred from multi-sample bulk sequencing data obtained from a single patient. These error rates can be compared with the clone prediction methods evaluated in ref. [1] (CloneFinder, MACHINA, Treeomics, LICHeE, MixPhylogeny, PhyloWGS, and Cloe). 
+The ClonePhyTester pipeline has been developed by Sayaka Miura. It is written in Python and work smoothly on Windows at present.  It is under continuous development, so anticipate releasing a version for Linux in the near future.  You are free to download, modify, and expand this pipeline under a permissive license similar to the BSD 2-Clause License (see below). ClonePhyTester has a few standard dependencies that are noted below.
 
-ClonePhyTester is built for Windows 10. Linux version is currently not available. 
+The ClonePhyTester pipeline was developed for conducting a benchmarking analysis (Miura et al., Genome Biology, in review; ref. 1) in which we evaluated the performance of seven computational methods (CloneFinder, MACHINA, Treeomics, LICHeE, MixPhylogeny, PhyloWGS, and Cloe) in producing clone phylogenies for many simulated datasets. We assessed the accuracy of tested methods metrics in determining the order of mutations and the branching pattern within the reconstructed clone phylogenies (four different performance metrics are used: MLTED, RF, TreeVec, and mutation order error rates). For scientific rationale, details, and references, please consult Miura et al. (Genome Biology, in review; ref. 1). 
 
-
+In brief, if you download ClonePhyTester, you will automatically receive all the simulated datasets and primary results produced by the seven methods we tested. That is, you will not need to download and collect the datasets from many different original sources and programs.  If you execute the ClonePhyTester pipeline as is after downloading, it will replicate all the results, because the results from all the seven methods applied to all the simulated datasets are also packaged in the download.  ClonePhyTester contains all the utilities to compute the performance metrics, and it will produce graphical visualizations and summaries. For all other uses, see below for How to use ClonePhyTester.
 
 Dependencies
 ==================
 1. R (version 3.6.0, 3.5.3, and 3.5.2 were tested)
     R dependencies:
     ape, maps, phytools, ade4, phangorn, jsonlite, googleVis, treespace, ggplot2, reshape2, and gdata
-
 Note: To install these R packages, you may run the following in R:   install.packages(c("ape","maps","phytools","ade4","phangorn","jsonlite","googleVis","treespace","ggplot2","reshape2","gdata"))
 
-    If gdata is not properly installed and the following error message is encountered, “Unable to load perl libraries needed by read.xls() to support XLX files, ” you may need to download Perl (version 5.12.30) from https://github.com/dwimperl/perl-5.12.3.0. Then, unzip into Windows(C:) folder. You can test if all dependencies were correctly installed by running the following command in R:
-
+    If gdata is not properly installed and the following error message is encountered, “Unable to load perl libraries needed by read.xls() to support XLX files, ” you may need to download Perl (version 5.12.30) from https://github.com/dwimperl/perl-5.12.3.0 and unzip it into Windows root (C:) folder. You can test if all dependencies were correctly installed by running the following commands in R:
 library(ape) 
 library(maps)
 library(phytools)
@@ -34,16 +33,13 @@ library(gdata)
 2. python (version 2.7.13)
     python  dependencies:
     Biopython, Pandas, numpy, and ete2
-
 Note: If the installation of these python packages is not easy, you may want to use Anaconda (4.4.0, 64-bit) for python 2.7 (https://www.anaconda.com/distribution/). If you use Anaconda, run the following commands from command prompt.
-
 conda install -c anaconda biopython
 conda install -c anaconda pandas
 conda install -c anaconda numpy
 conda install -c etetoolkit ete2 
 
 Or, the following commands can also work.
-
 pip install Biopython
 pip install pandas
 pip install numpy
@@ -58,16 +54,15 @@ Note: main.exe should be created in the ClonePhyTester directory. Prior installa
 4. MEGA-CC 
 Please download the latest version from https://www.megasoftware.net/.
 
-
+If you wish to use ClonePhyTester compare the performance of another method (new or existing) with the currently analyzed seven methods for the simulated dataset we employed, then ClonePhyTester will need you to give the clone sequences that are by the new method. With that information, ClonePhyTester will calculate all the performance metrics and produce graphical visualizations and summaries that will compare the new method with the existing seven methods. For adding new metrics or datasets, you should be able to easily modify ClonePhyTester, as it is ClonePhyTester is written in python.
 
 How to use 
 ==================
 1. Select a clone prediction method (which is not included in ref. [1]) and infer clone sequences on given read count information.
-You need to select a clone prediction method that is designed for the analysis of bulk sequencing data of multiple samples from a single patient (e.g., PhyloWGS). The input information should be read count, observed SNV frequencies, or cancer cell fraction. Simulated read count data are given in the directory of G7, G12, MA, and P10. These data was used in ref. [1] and the details are described in the section of ‘Simulated datasets.’
+You need to select a clone prediction method that is designed for the analysis of bulk sequencing data of multiple samples from a single patient (e.g., PhyloWGS). The input information should be read count, observed SNV frequencies, or cancer cell fraction. Simulated read count data are given in the directory of G7, G12, MA, and P10. These data were used in ref. [1] and the details are described in the section of ‘Simulated datasets.’
 
 2. Save your inferred clone sequences in the MEGA format (https://www.megasoftware.net/). 
 Note that 'A' and 'T' denote wild-type and mutant-type base assignments, respectively. The order of SNV should be the same as the read count data. Do not include normal (germline) sequences.
-
 For example: 
 Let us assume that you inferred some clone sequences by using a few read count data in G7, G12, P10, and MA directory. We saved these inferred clone sequences in the MEGA format in the directory of “Example.” 
 
@@ -92,8 +87,6 @@ python clonephytester.py Example/test.input
 
 Note: ClonePhyTester may not run from Dropbox or Googledrive.
 
-
-
 Output file
 ==================
 The output files are found in the folder that contains the control file (e.g., test.input). 
@@ -103,8 +96,6 @@ All scores (MLTED, Mutation Orders, TreeVac, and RF) are plotted with the other 
 2. Summary table (excel file). 
 The error rates for each dataset are provided in an excel file, together with the other methods. 
 For the example data analysis, it will produce test_summary.jpeg and test_summary.xlsx.
-
-
 
 Simulated datasets
 ==================
@@ -123,3 +114,13 @@ Reference:
 [2] Karpov N, Malikic S, Rahman K, Sahinalp S.C.: A Multi-labeled Tree Edit Distance for Comparing "Clonal Trees" of Tumor Progression. In: 18th International Workshop on Algorithms in Bioinformatics (WABI 2018). Volume 113: pp 22:1--22:19 
 [3] Wen D, Yu Y, Zhu J, Nakhleh L: Inferring Phylogenetic Networks Using PhyloNet. Syst 747 Biol 2018, 67(4):735-740. 
 [4] Kendall M, Eldholm V, Colijn C: Comparing phylogenetic trees according to tip label categories. bioRxiv 2018:251710.
+
+--------
+Copyright 2019, Authors and Temple University
+BSD 3-Clause "New" or "Revised" License, which is a permissive license similar to the BSD 2-Clause License except that that it prohibits others from using the name of the project or its contributors to promote derived products without written consent. 
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
