@@ -1,0 +1,7 @@
+((Tru9,Tru8),((Anc,Tru5),((Tru103,Normal),Tru3)),Tru102);
+((((Tru9,Tru8),Tru102),Tru5),Anc,((Tru103,Normal),Tru3));
+((((Tru9,Tru8),Tru102),(Anc,Tru5)),(Tru103,Tru3),Normal);
+((((Tru9,Tru8),Tru102),Anc),((Tru103,Tru3),Normal),Tru5);
+((((((Tru9,Tru8),Tru102),Tru5),Anc),Tru103),Tru3,Normal);
+(((((Tru9,Tru8),Tru102),(Anc,Tru5)),Tru103),Tru3,Normal);
+((((Tru9,Tru8),Tru102),Anc),((Tru103,Normal),Tru3),Tru5);

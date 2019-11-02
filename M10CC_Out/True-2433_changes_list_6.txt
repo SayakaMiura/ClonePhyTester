@@ -1,0 +1,62 @@
+Probability of inference < 0.9 (90%)                                                                                                                                 
+Probability of inference < 0.5 (50%)                                                                                                                                 
+" "                                    Taxa                                                                                                                          
+" "                                    Tru9      Anc       Tru103    Tru3      Tru8      Tru102    Normal    9         10        11        12        13              
+" "                                    →       →       →       →       →       →       →       →       →       →       →       →             
+" "                                    11        13        9         10        11        12        9         10        14        12        13        14              
+Site                                                                                                                                                                 
+1                                                                                                  T → A                                                           
+2                                                                                                  T → A                                                           
+3                                                                                                  T → A                                                           
+4                                                                                                  T → A                                                           
+5                                                                                                  T → A                                                           
+6                                                                                                  T → A                                                           
+7                                                                                                  T → A                                                           
+8                                                                                                  T → A                                                           
+9                                                                    A → T                                                                                         
+10                                                                   A → T                                                                                         
+11                                                                   A → T                                                                                         
+12                                     A → T             T → A             A → T             T → A   A → T   T → A   T → A                             
+13                                     A → T             T → A             A → T             T → A   A → T   T → A   T → A                             
+14                                     A → T             T → A             A → T             T → A   A → T   T → A   T → A                             
+15                                     A → T             T → A             A → T             T → A   A → T   T → A   T → A                             
+16                                     A → T             T → A             A → T             T → A   A → T   T → A   T → A                             
+17                                     A → T             T → A             A → T             T → A   A → T   T → A   T → A                             
+18                                     A → T             T → A             A → T             T → A   A → T   T → A   T → A                             
+29                                     A → T   T → A                       A → T   A → T                       T → A             T → A                   
+30                                     A → T   T → A                       A → T   A → T                       T → A             T → A                   
+31                                     A → T   T → A                       A → T   A → T                       T → A             T → A                   
+32                                     A → T   T → A                       A → T   A → T                       T → A             T → A                   
+33                                     A → T   T → A                       A → T   A → T                       T → A             T → A                   
+34                                     A → T   T → A                       A → T   A → T                       T → A             T → A                   
+35                                     A → T   T → A                       A → T   A → T                       T → A             T → A                   
+36                                     A → T   T → A                       A → T                                                     T → A   A → T         
+37                                     A → T   T → A                       A → T                                                     T → A   A → T         
+38                                     A → T   T → A                       A → T                                                     T → A   A → T         
+39                                     A → T   T → A                       A → T                                                     T → A   A → T         
+40                                     A → T   T → A                       A → T                                                     T → A   A → T         
+41                                                                             A → T                                                                               
+42                                                                             A → T                                                                               
+43                                                                             A → T                                                                               
+44                                                                             A → T                                                                               
+45                                                                             A → T                                                                               
+46                                                                             A → T                                                                               
+47                                                                             A → T                                                                               
+48                                     A → T                                                                                                                       
+49                                     A → T                                                                                                                       
+50                                     A → T                                                                                                                       
+51                                     A → T                                                                                                                       
+52                                     A → T                                                                                                                       
+53                                     A → T                                                                                                                       
+54                                     A → T                                                                                                                       
+                                                                                                                                                                     
+                                                                                                                                                                     
+                                                                                                                                                                     
+                                                                                                                                                                     
+                                                                                                                                                                     
+                                                                                                                                                                     
+                                                                                                                                                                     
+                                                                                                                                                                     
+                                                                                                                                                                     
+                                                                                                                                                                     
+                                                                                                                                                                     

@@ -1,0 +1,4 @@
+Sim	Data	Inferred Seq
+SimA	Example/Tips_for_modification_of_clonephytester/Example_A-user_generated_data/SimA/True/A1_True.meg	Example/Tips_for_modification_of_clonephytester/Example_A-user_generated_data/SimA/Inferred/InfA1.meg
+SimA	Example/Tips_for_modification_of_clonephytester/Example_A-user_generated_data/SimA/True/A2_True.meg	Example/Tips_for_modification_of_clonephytester/Example_A-user_generated_data/SimA/Inferred/InfA2.meg
+SimA	Example/Tips_for_modification_of_clonephytester/Example_A-user_generated_data/SimA/True/A3_True.meg	Example/Tips_for_modification_of_clonephytester/Example_A-user_generated_data/SimA/Inferred/InfA3.meg

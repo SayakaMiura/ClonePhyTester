@@ -1,0 +1,62 @@
+Probability of inference < 0.9 (90%)                                                                                                                    
+Probability of inference < 0.5 (50%)                                                                                                                    
+" "                                    Taxa                                                                                                             
+" "                                    Tru9      Anc   Tru103   Tru3      Tru5      Tru8      Normal    9     10    11        12        13              
+" "                                    →       →   →      →       →       →       →       →   →   →       →       →             
+" "                                    13        9     10       11        9         13        10        12    11    12        14        14              
+Site                                                                                                                                                    
+1                                                                                             T → A                                                   
+2                                                                                             T → A                                                   
+3                                                                                             T → A                                                   
+4                                                                                             T → A                                                   
+5                                                                                             T → A                                                   
+6                                                                                             T → A                                                   
+7                                                                                             T → A                                                   
+8                                                                                             T → A                                                   
+9                                                               A → T                                                                                 
+10                                                              A → T                                                                                 
+11                                                              A → T                                                                                 
+12                                                                                                                  T → A                             
+13                                                                                                                  T → A                             
+14                                                                                                                  T → A                             
+15                                                                                                                  T → A                             
+16                                                                                                                  T → A                             
+17                                                                                                                  T → A                             
+18                                                                                                                  T → A                             
+19                                                                        A → T                                                                       
+20                                                                        A → T                                                                       
+21                                                                        A → T                                                                       
+22                                                                        A → T                                                                       
+23                                                                        A → T                                                                       
+24                                                                        A → T                                                                       
+25                                                                        A → T                                                                       
+26                                                                        A → T                                                                       
+27                                                                        A → T                                                                       
+28                                                                        A → T                                                                       
+29                                                                                                                            T → A                   
+30                                                                                                                            T → A                   
+31                                                                                                                            T → A                   
+32                                                                                                                            T → A                   
+33                                                                                                                            T → A                   
+34                                                                                                                            T → A                   
+35                                                                                                                            T → A                   
+36                                                                                                                                      A → T         
+37                                                                                                                                      A → T         
+38                                                                                                                                      A → T         
+39                                                                                                                                      A → T         
+40                                                                                                                                      A → T         
+41                                                                                  A → T                                                             
+42                                                                                  A → T                                                             
+43                                                                                  A → T                                                             
+44                                                                                  A → T                                                             
+45                                                                                  A → T                                                             
+46                                                                                  A → T                                                             
+47                                                                                  A → T                                                             
+48                                     A → T                                                                                                          
+49                                     A → T                                                                                                          
+50                                     A → T                                                                                                          
+51                                     A → T                                                                                                          
+52                                     A → T                                                                                                          
+53                                     A → T                                                                                                          
+54                                     A → T                                                                                                          
+                                                                                                                                                        

@@ -51,8 +51,8 @@ RF1=melt(data = RF, id.vars = c("Sim","Data","ErrorScore"), measure.vars = MetLs
 Ta=rbind(Seq1,Par1,Con1,ML1,TV1,RF1)
 colnames(Ta)[colnames(Ta)=="variable"] <- "Method"
 colnames(Ta)[colnames(Ta)=="value"] <- "ErrorRate"
-Ta$Sim <- factor(Ta$Sim, levels = c("G7", "G12","P10",  "MA"))
+Ta$Sim <- factor(Ta$Sim, levels = c("G7", "G12","P10",  "MA","MA50","G7cna","TGlinear","TGstep","TGconst"))
 Ta$Method <- factor(Ta$Method, levels = MetLs)
-ggplot(Ta, aes(x=Method, y=ErrorRate, color=Method)) +geom_boxplot()+facet_grid(ErrorScore~Sim, scales = "free_y")+ scale_x_discrete(limits=MetLs)+scale_color_manual(values=c("black","#6b9b87", "#5871ba", "#91c452", "#7f57b0", "#d0ba4a", "#e4616e", "#d29a44"))+ theme(axis.text.x = element_text(angle = 45, hjust = 1),legend.position = "none")
+ggplot(Ta, aes(x=Method, y=as.numeric(ErrorRate), color=Method)) +geom_boxplot()+facet_grid(ErrorScore~Sim, scales = "free_y")+ scale_x_discrete(limits=MetLs)+scale_color_manual(values=c("black","#6b9b87", "#5871ba", "#91c452", "#7f57b0", "#d0ba4a", "#e4616e", "#d29a44"))+ theme(axis.text.x = element_text(angle = 45, hjust = 1),legend.position = "none")
 
 dev.off()

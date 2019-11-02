@@ -1,0 +1,1 @@
+G7	26	Example/Sequence_List/G7-26_test.meg

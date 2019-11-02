@@ -1,0 +1,1 @@
+G12	13	Example/Sequence_List/G12-13_test.meg

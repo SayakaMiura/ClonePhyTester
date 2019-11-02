@@ -1,0 +1,4 @@
+Sim	Data	Inferred Seq	
+TGlinear	linear1	TGlinear/Inferred/MACHINA/linear1Cells_MACHINA_Best.meg
+TGlinear	linear2	TGlinear/Inferred/MACHINA/linear2Cells_MACHINA_Best.meg
+TGlinear	linear3	TGlinear/Inferred/MACHINA/linear3Cells_MACHINA_Best.meg

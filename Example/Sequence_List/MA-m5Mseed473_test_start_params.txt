@@ -1,0 +1,1 @@
+MA	m5Mseed473	Example/Sequence_List/MA-m5Mseed473_test.meg

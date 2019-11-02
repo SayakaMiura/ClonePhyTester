@@ -1,0 +1,14 @@
+#MEGA
+!Title SNVs;
+!Format datatype=dna;
+ 
+#Clo4
+TATAAATAT
+#Clo5
+TTAAAAAAA
+#Clo2
+TAATTTAAA
+#Clo3
+TAATTTATA
+#Clo1
+TAAAAAAAA

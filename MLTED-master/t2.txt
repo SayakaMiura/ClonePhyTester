@@ -1,0 +1,11 @@
+N1=a
+N2=b
+N3=c
+N4=d
+N5=e
+N6=f
+N7=g
+N8=h
+N9=i
+N10=j
+N1:N2,N3,N4,N5,N6,N7,N8,N9,N10

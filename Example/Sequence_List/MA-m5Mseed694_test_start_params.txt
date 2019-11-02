@@ -1,0 +1,1 @@
+MA	m5Mseed694	Example/Sequence_List/MA-m5Mseed694_test.meg

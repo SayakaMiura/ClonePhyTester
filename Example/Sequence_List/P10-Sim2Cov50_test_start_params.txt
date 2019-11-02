@@ -1,0 +1,1 @@
+P10	Sim2Cov50	Example/Sequence_List/P10-Sim2Cov50_test.meg

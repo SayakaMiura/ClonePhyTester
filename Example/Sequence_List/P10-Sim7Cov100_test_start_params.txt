@@ -1,0 +1,1 @@
+P10	Sim7Cov100	Example/Sequence_List/P10-Sim7Cov100_test.meg

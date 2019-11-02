@@ -1,0 +1,1 @@
+G12	30	Example/Sequence_List/G12-30_test.meg

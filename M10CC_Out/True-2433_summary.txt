@@ -1,0 +1,57 @@
+;   MEGA-CC (Molecular Evolutionary Genetics Analysis Compute Core)
+;
+;   Suggested Citation for MEGA-CC 10:
+;
+;   Kumar S, Stecher G, Li M, Knyaz C, Tamura K
+;   MEGA X: Molecular Evolutionary Genetics Analysis across computing platforms
+;   Molecular Biology and Evolution (2018) 35:1547-1549
+;
+;   Kumar S, Stecher G, Peterson D, and Tamura K
+;   MEGA-CC: Computing Core of Molecular Evolutionary Genetics
+;   Analysis Program for Automated and Iterative Data Analysis.
+;   Bioinformatics (2012) 28:2685-2686 (Epub 2012 Aug 24)
+
+[General Info]
+
+	Data Type                               = nucleotide (non-coding)
+	No. of Taxa                             =        8
+	No. of Sites                            =       55
+	Data File                               = 'True.meg'
+	Settings File                           = './infer_MP_nucleotide.mao'
+	Command Line                            = megacc -a infer_MP_nucleotide.mao -d True.meg
+
+[Analysis Settings]
+
+	Analysis                                = Phylogeny Reconstruction
+	Statistical Method                      = Maximum Parsimony
+	Test of Phylogeny                       = None
+	No. of Bootstrap Replications           = Not Applicable
+	Substitutions Type                      = Nucleotide
+	Gaps/Missing Data Treatment             = Complete deletion
+	Site Coverage Cutoff (%)                = Not Applicable
+	MP Search Method                        = Subtree-Pruning-Regrafting (SPR)
+	No. of Initial Trees (random addition)  = 10
+	MP Search level                         = 1
+	Max No. of Trees to Retain              = 100
+	Calculate Branch Lengths                = No
+	Has Time Limit                          = False
+	Maximum Execution Time                  = -1
+	datatype                                = snNucleotide
+	containsCodingNuc                       = False
+	MissingBaseSymbol                       = ?
+	IdenticalBaseSymbol                     = .
+	GapSymbol                               = -
+
+[Analysis Statistics]
+
+	Start Time                              = 8-10-19 09:09:13
+	End Time                                = 8-10-19 09:09:14
+	Execution Time                          =    0.600 (seconds)
+	Peak Memory Used(Working Set)           = Not available
+	Tree Length                             =       55
+	CI                                      =    1.000(Consistency Index for all sites)
+	RI                                      =    1.000(Retention Index for all sites)
+	RC                                      =    1.000(Rescaled Index for all sites)
+	iCI                                     =    1.000(Consistency Index for parsimony informative sites)
+	iRI                                     =    1.000(Retention Index for parsimony informative sites)
+	iRC                                     =    1.000(Rescaled Index for parsimony informative sites)

@@ -1,0 +1,1 @@
+P10	Sim9Cov100	{'RF': 0.0, 'AncError': 0.020314192849404118, 'SibError': 0.0, 'CluError': 0.034786641929499075, 'MLTED': 'NA', 'TreeVec': '0'}

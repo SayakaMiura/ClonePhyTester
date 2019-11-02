@@ -4,239 +4,112 @@ import shutil
 import Functions
 import glob
 import pandas as pd
+
+####Parse input file####
+#SeqLs: list lines in "Data" file given in your input file. See SequenceList.txt for the format of "Data."
+#Rpath: path to Rscript
+#MLTEDpath: path to ./main (MLTED software)
+#Summary: output errors in the input file
+#InputParse: 'y' or 'n', in which 'y' indictes that there is errors in the input file and the clonephytester program terminate here.
 Input=sys.argv[1] #*.input
-Sim2TrueFile={'G7':'G7\\True\\G7-ID.meg','G12':'G12\\True\\G12-ID.meg','P10':'P10\\True\\ID_True.meg','MA':'MA\\True\\ID_True_NoRedun.meg'}
-xl = pd.ExcelFile('Summary.xlsx')#MA50xMAbest_summary.xlsx')#PhyloWGSSum3.xlsx')#
-Out=Input[:-6]+'_summary.xlsx'
-Input=open(Input,'r').readlines()
-SeqLs=''
-Rpath=''
-MLTEDpath=''
-Summary=''
-for i in Input:
-    i=i.strip().split('\t')
-    if i[0]=='Data': SeqLs=i[1]
-    elif i[0]=='R': Rpath='\"'+i[1]+'\"'
-    elif i[0]=='MLTED': MLTEDpath=i[1]
-    else: 
-       print 'incorrect information ID',i[0]
-       Summary+='incorrect information ID: '+i[0]+'\n'	   
-Go='y'
-if SeqLs=='':
-    print 'Data file is not assigned. Data was not analyzed.'
-    Summary+='Data file is not assigned. Data was not analyzed.'	
-    Go='n'	
-if Rpath=='':
-    print 'R path is not assigned. Data was not analyzed.'
-    Summary+='R path is not assigned. Data was not analyzed.'
-    Go='n'
-if MLTEDpath=='':
-    print 'MLTED path is not assigned. Data was not analyzed.'
-    Summary+='MLTED path is not assigned. Data was not analyzed.'	
-    Go='n'
-print Rpath
-#open('A','r').readlines()	
-Sheet2In={}
-#Sheet2In['Clone_count']=['CloneC'] ##############
-#Sheet2In['Ancestral_clone_count']=['AncNotFound'] #############
-#Sheet2In['clone_genotype_error']=['GE'] ##################
-Sheet2In['MLTED']=['MLTED']#,'MutPosiCountTrue','MutPosiCountInf']	
-Sheet2In['RF']=['RF']
-Sheet2In['TreeVec']=['TreeVec']
-Sheet2In['Sequential_MutPair_count']=['AncError']#['AncIc','AncError']
-Sheet2In['parallel_MutPair_count']=['SibError']#['SibIc','SibError']
-Sheet2In['concurrent_MutPair_count']=['CluError']#['CluIc','CluError']
-SheetLs=Sheet2In.keys()
-def CleanFile(Target):	
-    FiLs=glob.glob(Target)
-    for Fi in FiLs:
-        os.remove(Fi)	
-if Go=='y':
-    if os.path.exists(SeqLs)!=True:
-        print 'Data file does not exists. ',SeqLs,' Data was not analyzed.'
-        Summary+='Data file does not exists. '+SeqLs+' Data was not analyzed.'
-    else:	
-        ID2Res={}	
-        SeqLs=open(SeqLs,'r').readlines()
-        Head=SeqLs[0].strip()
-        if	Head!='Sim\tData\tInferred Seq':
-            print 'Data file should contain \"Sim\tData\tInferred Seq\" column. Data was not analyzed.'
-            Summary+='Data file should contain \"Sim\tData\tInferred Seq\" column. Data was not analyzed.'
-        else:
-            SeqLs=SeqLs[1:]		
+SeqLs, Rpath, MLTEDpath, Summary, InputParse = Functions.parse_input(Input)
+
+####File of true clone sequences####
+#Sim2TrueFile: a dictionary to assign a file of true clone sequences for each dataset.
+#Sim2TrueFile: a key is "Sim" in your "Data" file. See SequenceList.txt for the format of "Data."
+#Sim2TrueFile: "ID" is "Data" in you "Data" file.
+Sim2TrueFile={'G7':'G7/True/G7-ID.meg','G12':'G12/True/G12-ID.meg','P10':'P10/True/ID_True.meg','MA':'MA/True/ID_True_NoRedun.meg','G7cna':'G7/True/G7-ID.meg','MA50':'MA/True/ID_True_NoRedun.meg','TGlinear':'TGlinear/True/IDCells_True.meg','TGstep':'TGstep/True/IDCells_True.meg','TGconst':'TGconst/True/IDCells_True.meg'}
+
+if InputParse!='y': print (Summary)
+else:
+            ####Scores for inferred clone phylogeny is stored in ID2Res####
+            #Scores are computed for each given inference in the "Data" file.
+            ID2Res={}
             for In0 in SeqLs:
-               In=In0.strip().split('\t')
-               if len(In)<3: 
-                  print 'This line in the Data file is incorrect.',In0
-                  Summary+='This line in the Data file is incorrect. '+In0+' This line was skipped.\n'
-               else:				  
-                  Sim=In[0]
-                  ID=In[1]
-                  TruMeg=Sim2TrueFile[Sim].replace('ID',ID)				  
-                  InfMeg=In[2]	
-		  
-                  if os.path.exists(InfMeg)!=True:
-                      print 'Inferred sequence file does not exists.',InfMeg
-                      Summary+='Inferred sequence file does not exists. '+InfMeg+'\n'	
-                  if os.path.exists(TruMeg)!=True:
-                      print 'True sequence file does not exists.',TruMeg
-                      Summary+='True sequence file does not exists. '+TruMeg+'\n'	
-                  if os.path.exists(InfMeg)==True and os.path.exists(TruMeg)==True:
+               ####Parse a file of inferred clone sequences####
+               #Sim: "Sim" in your "Data" file. See SequenceList.txt for the format of "Data."
+               #ID: "Data" in your "Data" file.
+               #TruMeg: A file (.meg format) with true clone sequences for a dataset.
+               #InfMeg: A file (.meg format) with inferred clone sequences for a dataset.
+               #Summary: if there are errors in files of true and inferred clone sequences, the errors are shown.
+               #InfParse: y' or 'n', in which 'y' indictes that there is errors in the input files and scores are not computed for this dataset.
+               Sim,ID,TruMeg,InfMeg,Summary,InfParse = Functions.parse_inferred_file(In0,Summary,Sim2TrueFile)
+               if InfParse!='y': print (Summary)
+               if InfParse=='y':
+                      ####Scores for this dataset are stored in ResAll####
                       ResAll={}						  
-                      print InfMeg,TruMeg
-                      InfMegTMP=InfMeg.split('\\')[-1]
-                      TruMegTMP=TruMeg.split('\\')[-1]					  
-                      shutil.copy2(InfMeg, InfMegTMP)	
-                      shutil.copy2(TruMeg, TruMegTMP)						  
-                      os.system('python RmRedunSeq.py '+InfMegTMP)	 #*_NoRedun.meg	
-                      os.remove(InfMegTMP)					  
-                      InfMegTMP=InfMegTMP[:-4]+'_NoRedun.meg'					  
-                      print 'compute GE'
-                      PairList, TruCloCount, InfCloCount, AveGE, MedGE=Functions.PairClone(TruMegTMP,InfMegTMP)	
-                      TmutNum=Functions.CountMutPosi(TruMegTMP)
-                      ImutNum=Functions.CountMutPosi(InfMegTMP)	
-                      ResAll['MutPosiCountTrue']=TmutNum
-                      ResAll['MutPosiCountInf']=ImutNum					  
-                      Functions.GetOut_from_list(PairList,'True clone\tInf clone\tGE\tAnnotation\n',InfMegTMP[:-4]+'_TrueCloneAnnotation.txt')  					  
-                      print InfCloCount, AveGE	
-                      ResAll['CloneC']=InfCloCount
-                      ResAll['GE']=AveGE					  
-                      print 'compute RF'
-                      TrueFound_Ls, CorrectInf_Ls  = Functions.compute_E(PairList,99999999)			
-          
-                      RmNum, Compare2TreeIn, TrueMultiTree, InfMultiTree=Functions.MakeCompare2TreeIn(TrueFound_Ls,PairList,TruMegTMP,InfMegTMP,9999999,999999,'AA',Rpath)
-                      print TrueMultiTree, InfMultiTree
+                      ####Copy mega files####
+                      #InfMegTMP: Copied file of inferred clone sequences. Redundant sequences are removed, if any.
+                      #TruMegTMP: Copied file of true clone sequences.
+                      InfMegTMP=InfMeg.split('/')[-1]
+                      TruMegTMP=TruMeg.split('/')[-1]
+                      shutil.copy2(InfMeg, InfMegTMP)
+                      shutil.copy2(TruMeg, TruMegTMP)
+                      Functions.RmRedunSeq(InfMegTMP)
+                      InfMegTMP=InfMegTMP[:-4]+'_NoRedun.meg'
+                      
+                      ####Annotate inferred clones####
+                      #inferred clone sequences are paired with the most similar true clone sequences.
+                      #This clone annotation is output in the same directory of the mega file of inferred clone sequences.
+                      #PairList: list the line of clone annotation file
+                      #Inf2TruClo: dictionary of inferred clones matched with true clones
+                      #TrueCloneLs: list of true clone
+                      #Tru2Inf2GE: the number of SNV assignment errors (GE) for each inferred clone
+                      #TrueClone_Ls: list of true clones.
+                      PairList,Inf2TruClo,TrueCloneLs,Tru2Inf2GE,TrueClone_Ls=Functions.CloneAnno(TruMegTMP,InfMegTMP)
+                      shutil.copy2(InfMegTMP[:-4]+'_TrueCloneAnnotation.txt',InfMeg[:-4]+'_TrueCloneAnnotation.txt')
+                      
+                      ####infer true and inferred clone phylogeny####
+                      #use MEGACC to infer bifurcating phylogeny.
+                      #use phangorn pachage in R to infer multifurcating phylogeny from bifurcating phylogeny.
+                      #TrueMultiTree: nwk format true clone phylogeny.
+                      #InfMultiTree: nwk format inferred clne phylogeny. The number of clones was made to be the same as that in its true clone phylogeny.
+                      TrueMultiTree, InfMultiTree=Functions.Build_true_and_inferred_phylogeny(TrueClone_Ls,PairList,TruMegTMP,InfMegTMP,Rpath,'')
+                      
+                      ####Compute RF####
+                      #RF: RF distance calcuated by using PhyloNet_3.6.1.jar
                       if TrueMultiTree!='NA' and InfMultiTree!='NA':
-                          RFin=Functions.DoRF_repeatPrune(TrueMultiTree, InfMultiTree,0)
-                          RFin=RFin.split('\t')
-                          print RFin					  
-                          RF=1.0*(int(RFin[1])+int(RFin[2]))/(int(RFin[3])+int(RFin[4]))					  
-                          print RF
+                          RF=Functions.Compute_RF(TrueMultiTree, InfMultiTree,'')
                           ResAll['RF']=RF
-                      CleanFile('Inf_ancestral_states_*.txt')
-                      CleanFile('True_ancestral_states_*.txt')	
-                      os.remove('test.nwk')	
-                      os.remove('test1.nwk')
-                      os.remove('True.meg')
-                      os.remove('Inf.meg')					  
-                      print 'Compute mutation order error'
-                      os.system('python MutOrder.py '+InfMegTMP) #*_MutOrder.txt
-                      os.system('python MutOrder.py '+TruMegTMP)	
-                      TCla2Posi=Functions.Classify(TruMegTMP[:-4]+'_MutOrder.txt')
-                      ICla2Posi=Functions.Classify(InfMegTMP[:-4]+'_MutOrder.txt')
-         
-                      AncDecNotFound, AncDecIncorrect = Functions.Count1(TCla2Posi, ICla2Posi, 'AncDec')	
-                      DecAncNotFound, DecAncIncorrect = Functions.Count1(TCla2Posi, ICla2Posi, 'DecAnc')			  
-                      SibNotFound, SibIncorrect = Functions.Count1(TCla2Posi, ICla2Posi, 'Sib')
-                      CluNotFound, CluIncorrect = Functions.Count1(TCla2Posi, ICla2Posi, 'Clu')
-                      AncTc=len(TCla2Posi['AncDec'])+len(TCla2Posi['DecAnc'])
-                      AncIc=len(ICla2Posi['AncDec'])+len(ICla2Posi['DecAnc'])
-                      AncFP=AncDecIncorrect+DecAncIncorrect
-                      AncFN=AncDecNotFound+DecAncNotFound
-                      ResAll['AncIc']=AncIc
-                      if AncIc==0: 	ResAll['AncError']=	'Infinite'			  
-                      else: ResAll['AncError']=((1.0*AncFP/AncIc)+(1.0*AncFN/AncTc))/2					  
-                      SibTc=len(TCla2Posi['Sib'])
-                      SibIc=len(ICla2Posi['Sib'])
-                      SibFP=SibIncorrect
-                      SibFN=SibNotFound	
-                      ResAll['SibIc']=SibIc
-                      if SibIc==0: ResAll['SibError']='Infinite'				  
-                      else: ResAll['SibError']=((1.0*SibFP/SibIc)+(1.0*SibFN/SibTc))/2						  
-                      CluTc=len(TCla2Posi['Clu'])
-                      CluIc=len(ICla2Posi['Clu'])
-                      CluFP=CluIncorrect
-                      CluFN=CluNotFound						  
-                      ResAll['CluIc']=CluIc
-                      if CluIc==0: ResAll['CluError']='Infinite'					  
-                      else: ResAll['CluError']=((1.0*CluFP/CluIc)+(1.0*CluFN/CluTc))/2	
-                      print ResAll
-                      os.remove(TruMegTMP[:-4]+'_MutOrder.txt')
-                      os.remove(InfMegTMP[:-4]+'_MutOrder.txt')					  
-                      print 'compute MLTED'
-                      Itree=Functions.MakeMLTEin(InfMegTMP,'NA',InfMegTMP[:-4]+'_MLTEin.txt',Rpath)	
-                      Ttree=Functions.MakeMLTEin(TruMegTMP,'NA',TruMegTMP[:-4]+'_MLTEin.txt',Rpath)	
-                      if os.path.exists(InfMegTMP[:-4]+'_MLTEin.txt')==True and os.path.exists(TruMegTMP[:-4]+'_MLTEin.txt')==True: 
-                             os.system(MLTEDpath+' '+TruMegTMP[:-4]+'_MLTEin.txt'+ ' ' +InfMegTMP[:-4]+'_MLTEin.txt'+' >'+'red.txt')
-                             Res=open('red.txt','r').readlines()
-                             for i in Res:
-                                   
-                                      if i.find('Normalized Similarity = ')!=-1: ResAll['MLTED']=1.0-float(i.split(' ')[-1])
-                             os.remove('red.txt')	
-                             os.remove(InfMegTMP[:-4]+'_MLTEin.txt')	
-                             os.remove(TruMegTMP[:-4]+'_MLTEin.txt')								 
-                      print ResAll	
-                      print 'annotate ancestral clone'
-                      Inf2TruClo,TrueCloneLs,Tru2Inf2GE=Functions.CloneAnno(InfMegTMP[:-4]+'_TrueCloneAnnotation.txt')	
+             
+                      ####Compute mutation order error####
+                      #Sequential_Error,Parallel_Error,Concurrent_Error: see ref [1] for th detail of thse error rates
+                      Sequential_Error,Parallel_Error,Concurrent_Error = Functions.Compute_mut_order_error(InfMegTMP,TruMegTMP)
+                      ResAll['AncError']=Sequential_Error
+                      ResAll['SibError']=Parallel_Error
+                      ResAll['CluError']=Concurrent_Error
 
-                      MissTrueCloLs=Functions.FindMissingTruClo(InfMegTMP,Inf2TruClo,TrueCloneLs,Tru2Inf2GE)
-                      AncCloTruLs=Functions.FindAnc(TruMegTMP)
-   
-                      NotFoundLs=[]
-                      for Anc in AncCloTruLs:
-                              if MissTrueCloLs.count(Anc)!=0: NotFoundLs.append(Anc)
-				  
-                      ResAll['AncNotFound']=len(NotFoundLs)
-                      print 'Compute TreeVec'                      
-                      InfTree, InfCloneLs=Functions.DupRenameClone_MPtree(InfMegTMP,Inf2TruClo,TrueCloneLs,Tru2Inf2GE,Rpath)	
-                
-                      print TrueCloneLs,InfCloneLs	
-                      print Ttree,InfTree					  
-      				  
-                      Dist=Functions.Dotreespace(Ttree,InfTree,TrueCloneLs,InfCloneLs,Rpath)
-                      ResAll['TreeVec']=Dist
-                      print  ResAll 
-                      os.remove('RunR.r')	
-                      os.remove('RunTreeSpace.r')	
-                      os.remove('test.out')	
-                      os.remove('test.nwk')
-                      os.remove('test1.nwk')
-                      shutil.copy2(InfMegTMP[:-4]+'_TrueCloneAnnotation.txt',InfMeg[:-4]+'_TrueCloneAnnotation.txt')						  
-                      os.remove(InfMegTMP[:-4]+'_TrueCloneAnnotation.txt')		
-                      os.remove(InfMegTMP)	
-                      os.remove(TruMegTMP)					  
-                      ID2Res[Sim+'\t'+ID]=ResAll                      					  
+                      ####Compute MLTED####
+                      #MLTED: MLTED score computed by using the 'main' software.
+                      MLTED=Functions.Compute_MLTED(TrueMultiTree,InfMegTMP,TruMegTMP,Rpath,MLTEDpath,'')
+                      ResAll['MLTED']=MLTED
+
+                      ####Compute TreeVec####
+                      #TreeVec: TreeVec distance by using treespace package in R.
+                      TreeVec=Functions.Compute_TreeVec(TrueMultiTree,InfMegTMP,Inf2TruClo,TrueCloneLs,Tru2Inf2GE,Rpath,'')
+                      ResAll['TreeVec']=TreeVec
+
+                      ####Store all scores####
+                      ID2Res[Sim+'\t'+ID]=ResAll
+
+                      ####Delete unnecessary files####
+                      #os.remove('test.out')
+                      #os.remove('test.nwk')
+                      #os.remove('test1.nwk')
+                      os.remove(InfMegTMP[:-4]+'_TrueCloneAnnotation.txt')
+                      os.remove(InfMegTMP)
+                      os.remove(TruMegTMP)
                      
-print 'make output excel'	
-				  
-writer = pd.ExcelWriter(Out, engine='xlsxwriter') 
-for Sheet in Sheet2In:
-    InLs=Sheet2In[Sheet]
-    df = xl.parse(Sheet) 
-    ColLs= list(df)
-	
-    Len=len(df['Sim'].tolist())
-    AllDic={}
-    for Col in ColLs:
-        AllDic[Col]=df[Col].tolist()	
-    InLen=len(InLs)
-    InC=0
-    while InC<InLen:
-       In=InLs[InC]
-       ColLs.append('YourMethod')#In)	   
-       C=0
-       ValLs=[]	   
-       while C<Len:
-          ID=df['Sim'].tolist()[C]+'\t'+df['Data'].tolist()[C]
-          if ID2Res.has_key(ID)==True: 
-                 if ID2Res[ID].has_key(In)==True: ValLs.append(ID2Res[ID][In])
-                 else: 	ValLs.append('NA')			 
-          else: ValLs.append('NA')
-          C+=1
-     #  AllDic[In]=ValLs
-       AllDic['YourMethod']=ValLs	   
-       InC+=1
-    df = pd.DataFrame(AllDic)
-    df = df[ColLs]	
-    df.to_excel(writer, sheet_name=Sheet)
-writer.save()		   
-CleanFile('*_summary.txt')
-CleanFile('*_NoRedun_ancestral_states.txt')
-CleanFile('*_MLTEin.txt')
+#####MLTED, TreeVec, RF, and error rate of ordering mutations (scores) reported in ref [1] in README.txt####
+xl = pd.ExcelFile('Summary.xlsx')
 
-shutil.copy2(Out,'All.xlsx')
+####make output excel with score of "YournMethod"####
+#Out: output file name
+Out=Input[:-6]+'_summary.xlsx'
+Functions.make_output_excel(Out,ID2Res,xl,Rpath)
+
+#make plot
 os.system(Rpath+' Plots.r')
-os.remove('All.xlsx')
 shutil.copy2('plot.jpg',Out[:-5]+'.jpg')
-os.remove('plot.jpg')	  
-	
+os.remove('plot.jpg')
+os.remove('All.xlsx')

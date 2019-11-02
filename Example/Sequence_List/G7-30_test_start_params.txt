@@ -1,0 +1,1 @@
+G7	30	Example/Sequence_List/G7-30_test.meg

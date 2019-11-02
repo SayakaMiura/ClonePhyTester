@@ -1,0 +1,1 @@
+MA	m5Sseed17	Example/Sequence_List/MA-m5Rseed17_test.meg

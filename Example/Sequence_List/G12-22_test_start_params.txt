@@ -1,0 +1,1 @@
+G12	22	Example/Sequence_List/G12-22_test.meg

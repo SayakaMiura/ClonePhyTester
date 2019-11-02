@@ -1,0 +1,4 @@
+N1=a
+N2=b,c,d,e,f
+N3=g,h,i,j
+N1:N2,N3
