@@ -64,12 +64,12 @@ else:
                       #use phangorn pachage in R to infer multifurcating phylogeny from bifurcating phylogeny.
                       #TrueMultiTree: nwk format true clone phylogeny.
                       #InfMultiTree: nwk format inferred clne phylogeny. The number of clones was made to be the same as that in its true clone phylogeny.
-                      TrueMultiTree, InfMultiTree=Functions.Build_true_and_inferred_phylogeny(TrueClone_Ls,PairList,TruMegTMP,InfMegTMP,Rpath)
+                      TrueMultiTree, InfMultiTree=Functions.Build_true_and_inferred_phylogeny(TrueClone_Ls,PairList,TruMegTMP,InfMegTMP,Rpath,'')
                       
                       ####Compute RF####
                       #RF: RF distance calcuated by using PhyloNet_3.6.1.jar
                       if TrueMultiTree!='NA' and InfMultiTree!='NA':
-                          RF=Functions.Compute_RF(TrueMultiTree, InfMultiTree)
+                          RF=Functions.Compute_RF(TrueMultiTree, InfMultiTree,'')
                           ResAll['RF']=RF
              
                       ####Compute mutation order error####
@@ -81,12 +81,12 @@ else:
 
                       ####Compute MLTED####
                       #MLTED: MLTED score computed by using the 'main' software.
-                      MLTED=Functions.Compute_MLTED(TrueMultiTree,InfMegTMP,TruMegTMP,Rpath,MLTEDpath)
+                      MLTED=Functions.Compute_MLTED(TrueMultiTree,InfMegTMP,TruMegTMP,Rpath,MLTEDpath,'')
                       ResAll['MLTED']=MLTED
 
                       ####Compute TreeVec####
                       #TreeVec: TreeVec distance by using treespace package in R.
-                      TreeVec=Functions.Compute_TreeVec(TrueMultiTree,InfMegTMP,Inf2TruClo,TrueCloneLs,Tru2Inf2GE,Rpath)
+                      TreeVec=Functions.Compute_TreeVec(TrueMultiTree,InfMegTMP,Inf2TruClo,TrueCloneLs,Tru2Inf2GE,Rpath,'')
                       ResAll['TreeVec']=TreeVec
 
                       ####Store all scores####
