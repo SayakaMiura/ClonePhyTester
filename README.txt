@@ -58,7 +58,11 @@ By using a command prompt, run the following command in the ClonePhyTester direc
 g++ -std=c++11 main.cpp -o main
 
 4. MEGA-CC 
-Please download the latest version from https://www.megasoftware.net/.
+Please download MEGA-CC from,
+Windows: https://www.megasoftware.net/releases/MEGA_X_CC_10.1.7_win64_setup.exe
+Ubuntu/Debian: https://www.megasoftware.net/releases/megax-cc_10.1.7-1_amd64.deb 
+Redhat/Fedora: https://www.megasoftware.net/releases/megax-cc-10.1.7-1.x86_64.rpm
+macOS: https://www.megasoftware.net/releases/MEGAX_CC_10.1.7_installer.pkg
 
 5. Java
 Please download the latest version of Java using the command prompt.
